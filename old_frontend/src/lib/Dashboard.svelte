@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount, onDestroy } from 'svelte'
     import { currentUser, pb } from './pocketbase'
+    import { goto } from ''
 
     // states
     let showCreateTreeModal = false;
@@ -61,22 +62,29 @@
 
 <p class="mb-3">Signed in as {$currentUser?.username}</p>
 
-<div class="h-6/12 flex flex-col gap-3 overflow-y-auto">
+<div class="h-6/12 flex flex-col gap-3 overflow-y-auto w-full">
     {#each trees as tree (tree.id)}
-        <div class="">
-            {tree.name}
-        </div>
+        <a href="/tree/{tree.id}">
+            <div 
+                class="h-24 border-2 border-gray-500 rounded-lg flex justify-center align-middle hover:bg-zinc-600 transition-all"
+
+            >
+                <div class="flex flex-col justify-center align-middle ">
+                    {tree.name}
+                </div>
+            </div>
+        </a>
     {/each}
 </div>
 
-<div id="createTreeModal" tabindex="-1" aria-hidden="true" class="hidden modal"
+<div id="createTreeModal" tabindex="-1" aria-hidden="true" class="hidden modal "
     class:hidden={!showCreateTreeModal}
 >
     <div class="modal-content">
         <!-- Modal content -->
         <div class="relative rounded-lg shadow-md">
             <!-- Modal header -->
-            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+            <div class="flex items-center justify-between px-1 py-2">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                     New Tree
                 </h3>
@@ -89,7 +97,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-4 md:p-5 space-y-4">
+            <div class="space-y-4 px-1 py-2">
                 <form on:submit|preventDefault={createTree}
                     class="flex flex-col gap-3"
                 >
@@ -105,7 +113,7 @@
                 
             </div>
             <!-- Modal footer -->
-            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <div class="flex items-center px-1 py-2">
                 <button on:click={createTree} type="submit" class="text-white bg-orange-500 hover:bg-zinc-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create</button>
             </div>
         </div>
@@ -114,9 +122,9 @@
 
 <button
     type="button"
-    class="absolute bottom-5 right-5
+    class="relative bottom-5 right-5
         bg-orange-500 rounded-full text-white
-        size-16 p-3
+        size-12 p-3
         text-5xl text-center
     "
     on:click={toggleCreateTreeModal}
