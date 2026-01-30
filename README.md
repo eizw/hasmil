@@ -26,4 +26,4 @@ The development uses Pocketbase for the backend and Svelte/Sveltekit for the fro
 
 
 The database has been designed to support one-to-many relations between a person and multiple families, as the diagram below
-![uml diagram](https://imgur.com/a/RsW6VW3)
+![uml diagram](https://imgur.com/a/RsW6VW3.png)
