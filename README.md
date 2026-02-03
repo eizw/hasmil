@@ -7,6 +7,10 @@ Family tree app
 
 There are two different directories for the backend and frontend
 
+Admin:
+Username: root
+Password: 123456
+Please refer to Pocketbase's documentation to adjust the admin settings.
 To run the backend:
 ```bash
 cd backend
