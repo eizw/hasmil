@@ -146,6 +146,6 @@
 </div>
 {:else}
 <a href="/login">
-    
+    Login
 </a>
 {/if}
