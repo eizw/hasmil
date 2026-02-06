@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount, getContext } from 'svelte';
     import { currentUser, pb } from '$lib/pocketbase';
+    import { goto } from '$app/navigation';
 
     let username: string;
     let password: string;
@@ -31,6 +32,10 @@
     }
 
     onMount(async () => {
+        if (currentUser != null) {
+            goto('/');
+        }
+
         let body = document.querySelector('body');
         body?.addEventListener('keydown', async (e) => {
             if (e.key =='Enter') {
